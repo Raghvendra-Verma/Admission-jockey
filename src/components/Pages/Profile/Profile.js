@@ -48,8 +48,8 @@ export default function Profile() {
   }, [])
 
 console.log("pro",users?.users);
-  const profileData = users?.users?.filter((item, i) => item?._id );
-  // const profileData = users?.users?.filter((item, i) => item?._id == sessionStorage.getItem("userId"))
+  // const profileData = users?.users?.filter((item, i) => item?._id );
+  const profileData = users?.users?.filter((item, i) => item?._id == sessionStorage.getItem("userId"))
 
   console.log("profileData",profileData);
 
