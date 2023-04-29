@@ -48,8 +48,8 @@ export default function Profile() {
   }, [])
 
 console.log("pro",users?.users);
-  // const profileData = users?.users?.filter((item, i) => item?._id );
-  const profileData = users?.users?.filter((item, i) => item?._id == sessionStorage.getItem("userId"))
+  const profileData = users?.users?.filter((item, i) => item?._id );
+// const profileData = users?.users?.filter((item, i) => item?._id == sessionStorage.getItem("userId"))
 
   console.log("profileData",profileData);
 
@@ -94,20 +94,6 @@ console.log("pro",users?.users);
             </Breadcrumb.Item>
           </Breadcrumb>
         </div>
-        {/* <div className="ms-auto pageheader-btn">
-          <Link to="#" className="btn btn-primary btn-icon text-white me-3">
-            <span>
-              <i className="fe fe-plus"></i>&nbsp;
-            </span>
-            Add Account
-          </Link>
-          <Link to="#" className="btn btn-success btn-icon text-white">
-            <span>
-              <i className="fe fe-log-in"></i>&nbsp;
-            </span>
-            Export
-          </Link>
-        </div> */}
       </div>
 
       <Row id="user-profile">
@@ -127,8 +113,10 @@ console.log("pro",users?.users);
                       />
                       {
                         profileData && profileData[0]?.image != undefined ?
-                        <img className="profileImgMain" crossorigin="anonymous" src={`${process.env.REACT_APP_IMG_URL}${profileData[0]?.image}`} alt="img" /> :
+                        <img className="profileImgMain" crossorigin="anonymous" src="http://localhost:5500/images/1682767874495-JSS_Logo.png" alt="img" /> :
                         <img className="" src={user8} alt="img" />
+                        // <img className="profileImgMain" crossorigin="anonymous" src={`${process.env.REACT_APP_IMG_URL}${profileData[0]?.image}`} alt="img" /> :
+                        // <img className="" src={user8} alt="img" />
                       }
                        
                       </div>
