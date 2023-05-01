@@ -134,11 +134,12 @@ const Gallery = () => {
                       >
                         <LightgalleryProvider>
                           {item?.gallery_img?.map((image, index) => {
+                            console.log("img",image);
                             return (
                               <div className="col-4" key={index}>
                                 <PhotoItem
-                                  image="http://localhost:5500/images"
-                                  // image={`${process.env.REACT_APP_API_BASE_URL}/${image}`}
+                                  image="http://localhost:5500/images/1682801387876-JSS_Logo.png"
+                                  //image={`${process.env.REACT_APP_IMG_URL}/${image}`}
                                   className="br-5"
                                   group="group1"
                                 />

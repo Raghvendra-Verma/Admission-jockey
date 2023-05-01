@@ -20,7 +20,7 @@ export default function Profile() {
     users: state?.userAuth?.users,
   }));
 
-  console.log("Users",users);
+  //console.log("Users",users);
   //console.log("UserName",users.users[0].name);
 
   const handleClickOpen = (scrollType, row) => () => {
@@ -47,9 +47,10 @@ export default function Profile() {
     dispatch(fetchUserByRole(sessionStorage.getItem("role")))
   }, [])
 
-console.log("pro",users?.users);
-  const profileData = users?.users?.filter((item, i) => item?._id );
-// const profileData = users?.users?.filter((item, i) => item?._id == sessionStorage.getItem("userId"))
+//console.log("pro",users?.users);
+  //const profileData = users?.users?.filter((item, i) => item?._id );
+  //console.log("id",sessionStorage.getItem("userId"));
+  const profileData = users?.users?.filter((item, i) => item?._id == sessionStorage.getItem("userId"))
 
   console.log("profileData",profileData);
 

@@ -50,11 +50,14 @@ export const login = (userInfo) => async (dispatch) => {
   console.log(userInfo, 'userInfouserInfo');
   try {
     //dispatch({ type: USER_LOGIN_REQUEST });
-    const { data } = await API.post(`/userLogin`, userInfo);
-    //const {data} = await axios.post("http://localhost:5500/userLogin",userInfo);
+    //const { data } = await API.post(`/userLogin`, userInfo);
+    const {data} = await axios.post("http://localhost:5500/userLogin",userInfo);
+
     console.log("log",data);
-    //console.log(data, data?.data, "ff")
+    console.log("ff",data, data?.data);
+
     dispatch({ type: USER_LOGIN_SUCCESS });
+
     if (data?.data?.responseUser?.role == 0) {
       toast("Invalid Credentials");
     } else if (data.status_code) {
@@ -71,9 +74,9 @@ export const login = (userInfo) => async (dispatch) => {
     else {
       toast("Invalid Credentials")
     }
-    // // if (data?.data?.accessToken) {
-    // //   window.location.href = '/dashboard';
-    // // }
+    // if (data?.data?.accessToken) {
+    //   window.location.href = '/dashboard';
+    // }
   } catch (error) {
     console.log(error, "error")
     dispatch({

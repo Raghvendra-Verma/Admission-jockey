@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createStatus } from "../../../redux/Action/Status";
 import { getPropertyType } from "../../../redux/Action/PropertyAction";
 import { StepForm } from "./StepForm/StepForm";
+
 export default function FormProperty() {
   const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
