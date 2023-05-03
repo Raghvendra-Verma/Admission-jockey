@@ -10,7 +10,6 @@ import { FormSelect } from "../Forms/FormSelect";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { register } from "../../redux/Action/AuthAction";
 import { createStatus, statusCreate, statusFetch, statusUpdate } from "../../redux/Action/Status";
 
 const statusvalSchema = Yup.object().shape({

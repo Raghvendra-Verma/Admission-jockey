@@ -43,7 +43,7 @@ export default function PropertyType() {
   useEffect(()=>{
     dispatch(getPropertyType())
   },[])
-console.log(property,"property-=>->")
+//console.log(property,"property-=>->")
   return (
     <div>
       <div className="page-header">
@@ -65,12 +65,6 @@ console.log(property,"property-=>->")
             </span>
             Add Property
           </Link>
-          {/* <Link to="#" className="btn btn-success btn-icon text-white">
-            <span>
-              <i className="fe fe-log-in"></i>&nbsp;
-            </span>
-            Export
-          </Link> */}
         </div>
       </div>
 

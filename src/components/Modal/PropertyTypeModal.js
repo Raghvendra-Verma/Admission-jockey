@@ -6,14 +6,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import "react-datepicker/dist/react-datepicker.css";
-import { FormSelect } from "../Forms/FormSelect";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { register } from "../../redux/Action/AuthAction";
-import { createStatus, statusCreate, statusFetch, statusUpdate } from "../../redux/Action/Status";
-import user8 from "../../assets/images/profile__.png";
-import { createPropertyType, getPropertyType } from "../../redux/Action/PropertyAction";
+import { createPropertyType, getPropertyType,updatePropertyType} from "../../redux/Action/PropertyAction";
 
 const PropertyTypeSchema = Yup.object().shape({
     parent: Yup.string().required('Please select parent property.'),
@@ -21,13 +17,14 @@ const PropertyTypeSchema = Yup.object().shape({
     form_url: Yup.string().required('Property url is required.'),
 });
 
-export function PropertyTypeModal({ open, scroll, handleClose,editStatus }) {
+export function PropertyTypeModal({ open, scroll, handleClose,editProperty }) {
   const descriptionElementRef = React.useRef(null);
+
   const { property } = useSelector(state => ({
     property: state?.property?.property,
   }));
 
-  console.log(property,"uysfhgfdfhagdyfgdh")
+  //console.log(property,"uysfhgfdfhagdyfgdh")
   const dispatch = useDispatch();
   React.useEffect(() => {
     if (open) {
@@ -46,17 +43,21 @@ export function PropertyTypeModal({ open, scroll, handleClose,editStatus }) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      "parent":  "",
-      "property_name":  "",
-      "property_desc":  "",
-      "form_url":  "",
-      "property_img": ""
+      "parent": editProperty?.parent || "",
+      "property_name": editProperty?.property_name || "",
+      "property_desc": editProperty?.property_desc || "",
+      "form_url": editProperty?.form_url || "",
+      "property_img": editProperty?.property_img || "",
     },
      validationSchema: PropertyTypeSchema,
     onSubmit: values => {
       //alert(JSON.stringify(values, null, 2));
+      if(editProperty != undefined) {
+        dispatch(updatePropertyType(editProperty?._id,values));
+        dispatch(getPropertyType());
+      }else{
         dispatch(createPropertyType(values));
-      
+      }
       formik.resetForm()
       handleClose()
     },

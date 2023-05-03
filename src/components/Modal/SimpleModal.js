@@ -40,13 +40,13 @@ export function SimpleModal({ open, role, scroll, handleClose, editUser, profile
       "name": editUser?.name || "",
       "email": editUser?.email || "",
       "contact_no": editUser?.contact_no || "",
-      // "alt_contact": editUser?.alt_contact || "",
+      "alt_contact": editUser?.alt_contact || "",
       "cafename": editUser?.cafename || "",
       "cafecity": editUser?.cafecity || "",
       "role": editUser?.role || role,
       "description":editUser?.description || "",
-      // "password": editUser?.password || "",
-      // "confirm_password": editUser?.confirm_password || "",
+      "password": editUser?.password || "",
+      "confirm_password": editUser?.confirm_password || "",
     },
      validationSchema: SignupSchema,
     onSubmit: values => {
@@ -67,7 +67,9 @@ export function SimpleModal({ open, role, scroll, handleClose, editUser, profile
       //alert(JSON.stringify(values, null, 2));
     },
   });
-  console.log(editUser, "confirm_passwordconfirm_passwordconfirm_passwordconfirm_passwordconfirm_password")
+
+  //console.log(editUser, "confirm_passwordconfirm_passwordconfirm_passwordconfirm_passwordconfirm_password")
+
   return (
     <>
       <Dialog

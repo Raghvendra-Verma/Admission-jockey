@@ -19,29 +19,48 @@ const propertyReducer = (state = initState, action) => {
     switch (action.type) {
 
         case PROPERTY_TYPE_ADD_SUCCESS:
-            console.log(action.payload, "PROPERTY_TYPE_ADD_SUCCESS")
+            //console.log( "PROPERTY_TYPE_ADD_SUCCESS",action.payload);
+            //console.log("state",state);
             return ({
                 ...state,
-                property: [...state.property, action.payload]
+                property: [...state.property, action.payload.propertyCreated]
             });
 
         case PROPERTY_TYPE_GET_SUCCESS:
+            // console.log( "PROPERTY_TYPE_GET_SUCCESS",action.payload);
+            // console.log("state",state);
             return ({
                 ...state,
                 property: action.payload
             });
 
         case PROPERTY_TYPE_UPDATE_SUCCESS:
-            return ({
-                ...state,
-                property: action.payload
+            console.log("ROPERTY_TYPE_UPDATE_SUCCESS",action.payload);
+            console.log("property",action.payload.property);
+            const array = action.payload.property;
+            const latest = array.reduce(function (r, a) {
+                return r.date > a.date ? r : a;
             });
+            console.log("latest",latest._id);
+            console.log("payload",action.payload.latest)
+            //console.log("state",state);
+            return ({
+                // ...state,
+                // property: action.payload
+                ...state,
+                property: state.property.map((item) =>
+                    item?._id == latest._id ? latest : item
+            )});
             
         case PROPERTY_TYPE_DELETE_SUCCESS:
+            console.log("ROPERTY_TYPE_DELETE_SUCCESS",action.payload);
             return ({
+                // ...state,
+                // property: action.payload
                 ...state,
-                property: action.payload
-            });
+                property: state.property.map((item) =>
+                    item?._id == action.payload?._id ? { ...action.payload } : item
+            )});
 
         case SUCCESS_AFFILIATE_APPROVE:
             return ({

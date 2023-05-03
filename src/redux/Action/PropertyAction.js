@@ -10,11 +10,12 @@ export const createPropertyType = (property) => async (dispatch) => {
     dispatch({ type: PROPERTY_TYPE_ADD_REQUEST });
     const { data } = await API.post(`/createPropertyType`, property);
 
-    console.log("PROPERTY_TYPE_ADD_REQUEST",data)
+    //console.log("PROPERTY_TYPE_ADD_REQUEST",data)
+    dispatch({ type: PROPERTY_TYPE_ADD_SUCCESS,payload:data});
 
+    
     if (data.status_code == 200) {
-      dispatch({ type: PROPERTY_TYPE_ADD_SUCCESS, payload: data?.propertyCreated });
-      toast.success(data?.message)
+      toast.success("PropertyType created Successfully");
     } else {
       toast.error(data?.message)
     }
@@ -35,7 +36,7 @@ export const getPropertyType = () => async (dispatch) => {
 
     console.log(data, "getPropertyType")
 
-    dispatch({ type: PROPERTY_TYPE_GET_SUCCESS, payload: data });
+    dispatch({ type: PROPERTY_TYPE_GET_SUCCESS,payload:data });
 
   } catch (error) {
     dispatch({
@@ -49,7 +50,7 @@ export const updatePropertyType = (id,property) => async (dispatch) => {
   try {
     dispatch({ type: PROPERTY_TYPE_UPDATE_REQUEST });
     const { data } = await API.put(`/updatePropertyType?id=${id}`, property);
-console.log(data,"llllllooooo")
+console.log("data",data);
     dispatch({ type: PROPERTY_TYPE_UPDATE_SUCCESS, payload:data });
 
         toast.success("Property updated successfully.")
@@ -70,7 +71,7 @@ export const deletePropertyType = (id) => async (dispatch) => {
 console.log(data,"llllllooooo")
     dispatch({ type: PROPERTY_TYPE_DELETE_SUCCESS, payload:data });
 
-    toast.success("Property deleted successfully.")
+    toast.success("PropertyType deleted successfully.")
 
   } catch (error) {
     dispatch({

@@ -9,6 +9,7 @@ export const createStatus = (status) => async (dispatch) => {
     const { data } = await API.post(`/createStatus`, status);
 
     dispatch({ type: USER_STATUS_FOR_SUCCESS });
+    
     if(data.status_code == 200){
         toast.success(data?.message)
      
